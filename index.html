@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penna Tour | Luxury Travel Experiences</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
+        }
+        
+        .package-card:hover .package-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .package-overlay {
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .testimonial-card {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #f59e0b;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            transition: all 0.3s ease;
+            max-height: 0;
+            overflow: hidden;
+        }
+        
+        .mobile-menu.open {
+            max-height: 500px;
+        }
+        
+        /* Enhanced responsive utilities */
+        @media (max-width: 320px) {
+            .text-xs-responsive {
+                font-size: 0.75rem;
+            }
+            .px-xs-responsive {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-text-responsive {
+                font-size: 2rem !important;
+                line-height: 1.2;
+            }
+            .section-padding-responsive {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+            }
+        }
+        
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .tablet-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Ensure images are always responsive */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed w-full z-50">
+        <div class="container mx-auto px-2 sm:px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center min-w-0">
+                <a href="#" class="flex items-center">
+                    <img src="WhatsApp Image 2025-07-09 at 04.50.05_bb2dcf21.jpg" alt="Penna Tour Logo" class="h-8 sm:h-10 md:h-12 w-auto mr-2 sm:mr-3">
+                    <span class="heading-font text-lg sm:text-xl md:text-2xl font-bold text-gray-800 truncate">PENNA TOUR</span>
+                </a>
+            </div>
+            
+            <div class="hidden lg:flex space-x-6 xl:space-x-8">
+                <a href="#home" class="nav-link text-gray-700 hover:text-amber-500 font-medium py-2 text-sm lg:text-base">Home</a>
+                <a href="#packages" class="nav-link text-gray-700 hover:text-amber-500 font-medium py-2 text-sm lg:text-base">Packages</a>
+                <a href="#experiences" class="nav-link text-gray-700 hover:text-amber-500 font-medium py-2 text-sm lg:text-base">Experiences</a>
+                <a href="#about" class="nav-link text-gray-700 hover:text-amber-500 font-medium py-2 text-sm lg:text-base">About</a>
+                <a href="#contact" class="nav-link text-gray-700 hover:text-amber-500 font-medium py-2 text-sm lg:text-base">Contact</a>
+            </div>
+            
+            <div class="hidden lg:block">
+                <a href="#contact" class="bg-amber-500 hover:bg-amber-600 text-white px-4 lg:px-6 py-2 rounded-full font-medium transition duration-300 shadow-lg hover:shadow-xl text-sm lg:text-base">
+                    Book Now
+                </a>
+            </div>
+            
+            <button id="mobile-menu-button" class="lg:hidden text-gray-700 focus:outline-none p-1">
+                <i class="fas fa-bars text-xl sm:text-2xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobile-menu" class="mobile-menu lg:hidden bg-white px-2 sm:px-4">
+            <div class="flex flex-col space-y-3 py-4">
+                <a href="#home" class="text-gray-700 hover:text-amber-500 font-medium py-2 px-2 rounded transition duration-300">Home</a>
+                <a href="#packages" class="text-gray-700 hover:text-amber-500 font-medium py-2 px-2 rounded transition duration-300">Packages</a>
+                <a href="#experiences" class="text-gray-700 hover:text-amber-500 font-medium py-2 px-2 rounded transition duration-300">Experiences</a>
+                <a href="#about" class="text-gray-700 hover:text-amber-500 font-medium py-2 px-2 rounded transition duration-300">About</a>
+                <a href="#contact" class="text-gray-700 hover:text-amber-500 font-medium py-2 px-2 rounded transition duration-300">Contact</a>
+                <a href="#contact" class="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-full font-medium text-center mt-2 transition duration-300">
+                    Book Now
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-20 pb-24 sm:pt-24 sm:pb-32 md:pt-32 md:pb-40 lg:pt-32 lg:pb-40 flex items-center min-h-screen" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'); background-size: cover; background-position: center; background-attachment: scroll;">
+        <div class="md:hidden absolute inset-0 bg-black opacity-30"></div>
+        <div class="hero-gradient absolute inset-0"></div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-4xl">
+                <h1 class="heading-font text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight">
+                    Discover Zanzibar with <span class="text-amber-400">Penna Tour</span>
+                </h1>
+                <p class="text-base sm:text-lg md:text-xl text-gray-200 mb-6 sm:mb-8 max-w-2xl">
+                    Exclusive Zanzibar vacation packages, luxury beach resorts, and unforgettable island experiences tailored just for you.
+                </p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#packages" class="bg-amber-500 hover:bg-amber-600 text-white px-6 sm:px-8 py-3 rounded-full font-medium transition duration-300 shadow-lg hover:shadow-xl text-center text-sm sm:text-base">
+                        Explore Packages
+                    </a>
+                    <a href="#contact" class="bg-transparent border-2 border-white hover:bg-white hover:text-gray-800 text-white px-6 sm:px-8 py-3 rounded-full font-medium transition duration-300 text-center text-sm sm:text-base">
+                        Custom Trip
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-12 sm:py-16 lg:py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 sm:mb-16">
+                <span class="text-amber-500 font-medium uppercase tracking-wider text-sm sm:text-base">Why Choose Us</span>
+                <h2 class="heading-font text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mt-2">
+                    Zanzibar Travel <span class="text-amber-500">Perfected</span>
+                </h2>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <div class="bg-gray-50 p-6 sm:p-8 rounded-xl hover:shadow-xl transition duration-300">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 bg-amber-100 rounded-full flex items-center justify-center mb-4 sm:mb-6">
+                        <i class="fas fa-hotel text-xl sm:text-2xl text-amber-500"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3">Luxury Accommodations</h3>
+                    <p class="text-gray-600 text-sm sm:text-base">
+                        Stay at the world's most exclusive hotels and resorts, handpicked for their exceptional service and amenities.
+                    </p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 sm:p-8 rounded-xl hover:shadow-xl transition duration-300">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 bg-amber-100 rounded-full flex items-center justify-center mb-4 sm:mb-6">
+                        <i class="fas fa-car text-xl sm:text-2xl text-amber-500"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3">Premium Transfers</h3>
+                    <p class="text-gray-600 text-sm sm:text-base">
+                        Enjoy seamless transportation with our luxury vehicles and private chauffeurs available 24/7.
+                    </p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 sm:p-8 rounded-xl hover:shadow-xl transition duration-300 sm:col-span-2 lg:col-span-1">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 bg-amber-100 rounded-full flex items-center justify-center mb-4 sm:mb-6">
+                        <i class="fas fa-star text-xl sm:text-2xl text-amber-500"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3">Custom Experiences</h3>
+                    <p class="text-gray-600 text-sm sm:text-base">
+                        From private yacht charters to exclusive dining with Michelin chefs, we create unique moments just for you.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section id="packages" class="py-12 sm:py-16 lg:py-20 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 sm:mb-16">
+                <span class="text-amber-500 font-medium uppercase tracking-wider text-sm sm:text-base">Our Offerings</span>
+                <h2 class="heading-font text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mt-2">
+                    Exclusive <span class="text-amber-500">Vacation Packages</span>
+                </h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Package 1 -->
+                <div class="package-card relative overflow-hidden rounded-xl shadow-lg group">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Zanzibar Beach Resort" class="w-full h-48 sm:h-56 md:h-64 object-cover">
+                    <div class="package-overlay absolute inset-0 bg-gradient-to-t from-black to-transparent flex flex-col justify-end p-4 sm:p-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-400">
+                        <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Zanzibar Beach Paradise</h3>
+                        <div class="flex items-center text-amber-300 mb-3">
+                            <div class="flex text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-white ml-2 text-xs sm:text-sm">5.0 (24 reviews)</span>
+                        </div>
+                        <p class="text-gray-200 mb-4 text-sm sm:text-base">7 days in luxury beachfront villas with private pools and butler service.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl sm:text-2xl font-bold text-white">$4,999</span>
+                            <a href="#" class="bg-amber-500 hover:bg-amber-600 text-white px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition duration-300">
+                                Book Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Package 2 -->
+                <div class="package-card relative overflow-hidden rounded-xl shadow-lg group">
+                    <img src="https://images.unsplash.com/photo-1533107862482-0e6974b06ec4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2042&q=80" alt="Safari Adventure" class="w-full h-48 sm:h-56 md:h-64 object-cover">
+                    <div class="package-overlay absolute inset-0 bg-gradient-to-t from-black to-transparent flex flex-col justify-end p-4 sm:p-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-400">
+                        <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">African Safari</h3>
+                        <div class="flex items-center text-amber-300 mb-3">
+                            <div class="flex text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-white ml-2 text-xs sm:text-sm">5.0 (18 reviews)</span>
+                        </div>
+                        <p class="text-gray-200 mb-4 text-sm sm:text-base">10-day luxury safari with private game drives, hot air balloon rides, and gourmet bush dinners.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl sm:text-2xl font-bold text-white">$6,499</span>
+                            <a href="#" class="bg-amber-500 hover:bg-amber-600 text-white px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition duration-300">
+                                Book Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Package 3 -->
+                <div class="package-card relative overflow-hidden rounded-xl shadow-lg group md:col-span-2 xl:col-span-1">
+                    <img src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="African Lion Safari" class="w-full h-48 sm:h-56 md:h-64 object-cover">
+                    <div class="package-overlay absolute inset-0 bg-gradient-to-t from-black to-transparent flex flex-col justify-end p-4 sm:p-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-400">
+                        <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Zanzibar Wildlife Safari</h3>
+                        <div class="flex items-center text-amber-300 mb-3">
+                            <div class="flex text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-white ml-2 text-xs sm:text-sm">5.0 (28 reviews)</span>
+                        </div>
+                        <p class="text-gray-200 mb-4 text-sm sm:text-base">5-day adventure exploring Jozani Forest's red colobus monkeys and marine wildlife with expert guides and luxury bush camps.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl sm:text-2xl font-bold text-white">$3,499</span>
+                            <a href="#" class="bg-amber-500 hover:bg-amber-600 text-white px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition duration-300">
+                                Book Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-8 sm:mt-12">
+                <a href="#" class="inline-block border-2 border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-white px-6 sm:px-8 py-3 rounded-full font-medium transition duration-300 text-sm sm:text-base">
+                    View All Packages
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experiences Section -->
+    <section id="experiences" class="py-12 sm:py-16 lg:py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 sm:mb-16">
+                <span class="text-amber-500 font-medium uppercase tracking-wider text-sm sm:text-base">Tailored For You</span>
+                <h2 class="heading-font text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mt-2">
+                    Custom <span class="text-amber-500">Experiences</span>
+                </h2>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                <div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                        <div class="bg-gray-100 p-4 sm:p-6 rounded-xl">
+                            <i class="fas fa-utensils text-2xl sm:text-3xl text-amber-500 mb-3 sm:mb-4"></i>
+                            <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-2">Private Dining</h3>
+                            <p class="text-gray-600 text-sm sm:text-base">
+                                Exclusive meals prepared by Michelin-starred chefs in unique locations.
+                            </p>
+                        </div>
+                        <div class="bg-gray-100 p-4 sm:p-6 rounded-xl">
+                            <i class="fas fa-helicopter text-2xl sm:text-3xl text-amber-500 mb-3 sm:mb-4"></i>
+                            <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-2">Helicopter Tours</h3>
+                            <p class="text-gray-600 text-sm sm:text-base">
+                                Breathtaking aerial views of iconic landmarks and natural wonders.
+                            </p>
+                        </div>
+                        <div class="bg-gray-100 p-4 sm:p-6 rounded-xl">
+                            <i class="fas fa-ship text-2xl sm:text-3xl text-amber-500 mb-3 sm:mb-4"></i>
+                            <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-2">Yacht Charters</h3>
+                            <p class="text-gray-600 text-sm sm:text-base">
+                                Private yacht excursions with full crew and customized itineraries.
+                            </p>
+                        </div>
+                        <div class="bg-gray-100 p-4 sm:p-6 rounded-xl">
+                            <i class="fas fa-ticket-alt text-2xl sm:text-3xl text-amber-500 mb-3 sm:mb-4"></i>
+                            <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-2">VIP Access</h3>
+                            <p class="text-gray-600 text-sm sm:text-base">
+                                Skip-the-line access and backstage passes to major events worldwide.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="order-first lg:order-last">
+                    <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Custom Experiences" class="w-full rounded-xl shadow-xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-12 sm:py-16 lg:py-20 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 sm:mb-16">
+                <span class="text-amber-500 font-medium uppercase tracking-wider text-sm sm:text-base">Client Stories</span>
+                <h2 class="heading-font text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mt-2">
+                    What Our <span class="text-amber-500">Clients Say</span>
+                </h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
+                <div class="testimonial-card bg-white p-6 sm:p-8 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden mr-3 sm:mr-4 flex-shrink-0">
+                            <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Sarah J." class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800 text-sm sm:text-base">Sarah J.</h4>
+                            <div class="flex text-amber-400 text-xs sm:text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic text-sm sm:text-base">
+                        "Penna Tour arranged the most magical honeymoon for us in Bali. Every detail was perfect - from the private villa with infinity pool to the romantic beach dinners. We'll cherish these memories forever."
+                    </p>
+                </div>
+                
+                <div class="testimonial-card bg-white p-6 sm:p-8 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden mr-3 sm:mr-4 flex-shrink-0">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael T." class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800 text-sm sm:text-base">Michael T.</h4>
+                            <div class="flex text-amber-400 text-xs sm:text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic text-sm sm:text-base">
+                        "The African safari organized by Penna Tour exceeded all expectations. Our private guide was incredibly knowledgeable, and the luxury tented camp was beyond anything we imagined. Worth every penny!"
+                    </p>
+                </div>
+                
+                <div class="testimonial-card bg-white p-6 sm:p-8 rounded-xl md:col-span-2 xl:col-span-1">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden mr-3 sm:mr-4 flex-shrink-0">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Jennifer L." class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800 text-sm sm:text-base">Jennifer L.</h4>
+                            <div class="flex text-amber-400 text-xs sm:text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic text-sm sm:text-base">
+                        "As a frequent traveler, I can confidently say Penna Tour provides the highest level of service. Their attention to detail and ability to anticipate needs is unparalleled. I won't travel with anyone else now."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-12 sm:py-16 lg:py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                <div class="order-last lg:order-first">
+                    <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1983&q=80" alt="About Penna Tour" class="w-full rounded-xl shadow-xl">
+                </div>
+                
+                <div>
+                    <span class="text-amber-500 font-medium uppercase tracking-wider text-sm sm:text-base">Our Story</span>
+                    <h2 class="heading-font text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4 sm:mb-6">
+                        Crafting <span class="text-amber-500">Unforgettable</span> Journeys
+                    </h2>
+                    <p class="text-gray-600 mb-3 sm:mb-4 text-sm sm:text-base">
+                        Founded in 2010, Penna Tour began with a simple mission: to create extraordinary Zanzibar travel experiences that go beyond the ordinary. Our team of passionate local experts combines deep knowledge of the islands with exclusive connections to deliver vacations that are as unique as our clients.
+                    </p>
+                    <p class="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">
+                        As Zanzibar's premier tour operator, we offer access to experiences that most travelers only dream of. From private dhow cruises at sunset to cultural immersions with local communities, we believe travel should be transformative.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-amber-100 rounded-full flex items-center justify-center mr-3 sm:mr-4 flex-shrink-0">
+                                <i class="fas fa-globe text-amber-500 text-sm sm:text-base"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm sm:text-base">50+ Countries</h4>
+                                <p class="text-xs sm:text-sm text-gray-500">Worldwide coverage</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-amber-100 rounded-full flex items-center justify-center mr-3 sm:mr-4 flex-shrink-0">
+                                <i class="fas fa-heart text-amber-500 text-sm sm:text-base"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm sm:text-base">10,000+ Clients</h4>
+                                <p class="text-xs sm:text-sm text-gray-500">Satisfied travelers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 sm:py-20 lg:py-24 bg-gradient-to-r from-amber-500 to-amber-600">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="heading-font text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
+                Ready for Your <span class="text-gray-900">Dream Vacation?</span>
+            </h2>
+            <p class="text-base sm:text-lg md:text-xl text-white mb-6 sm:mb-8 max-w-2xl mx-auto">
+                Let our travel experts craft a personalized itinerary just for you. Luxury, comfort, and unforgettable experiences await.
+            </p>
+            <a href="#contact" class="inline-block bg-white hover:bg-gray-100 text-amber-600 px-6 sm:px-8 py-3 rounded-full font-medium transition duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base">
+                Get Started Now
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-12 sm:py-16 lg:py-20 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+                <div>
+                    <span class="text-amber-500 font-medium uppercase tracking-wider text-sm sm:text-base">Get In Touch</span>
+                    <h2 class="heading-font text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4 sm:mb-6">
+                        Plan Your <span class="text-amber-500">Next Adventure</span>
+                    </h2>
+                    <p class="text-gray-600 mb-6 sm:mb-8 text-sm sm:text-base">
+                        Fill out the form below and one of our luxury travel specialists will contact you within 24 hours to begin planning your perfect getaway.
+                    </p>
+                    
+                    <div class="space-y-4 sm:space-y-6">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-amber-100 rounded-full flex items-center justify-center mr-3 sm:mr-4 flex-shrink-0">
+                                <i class="fas fa-phone text-amber-500 text-sm sm:text-base"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm sm:text-base">Call Us</h4>
+                                <p class="text-gray-600 text-sm sm:text-base">+255 777 123 456</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-amber-100 rounded-full flex items-center justify-center mr-3 sm:mr-4 flex-shrink-0">
+                                <i class="fas fa-envelope text-amber-500 text-sm sm:text-base"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm sm:text-base">Email Us</h4>
+                                <p class="text-gray-600 text-sm sm:text-base break-all">info@pennatour.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-amber-100 rounded-full flex items-center justify-center mr-3 sm:mr-4 flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-amber-500 text-sm sm:text-base"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm sm:text-base">Visit Us</h4>
+                                <p class="text-gray-600 text-sm sm:text-base">Mizingani Road<br>Stone Town, Zanzibar</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-4 sm:p-6 lg:p-8 rounded-xl shadow-lg">
+                    <form>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
+                            <div>
+                                <label for="first-name" class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">First Name</label>
+                                <input type="text" id="first-name" class="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent text-sm sm:text-base" required>
+                            </div>
+                            <div>
+                                <label for="last-name" class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Last Name</label>
+                                <input type="text" id="last-name" class="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent text-sm sm:text-base" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4 sm:mb-6">
+                            <label for="email" class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Email Address</label>
+                            <input type="email" id="email" class="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent text-sm sm:text-base" required>
+                        </div>
+                        
+                        <div class="mb-4 sm:mb-6">
+                            <label for="phone" class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Phone Number</label>
+                            <input type="tel" id="phone" class="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent text-sm sm:text-base">
+                        </div>
+                        
+                        <div class="mb-4 sm:mb-6">
+                            <label for="destination" class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Destination Interest</label>
+                            <select id="destination" class="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent text-sm sm:text-base">
+                                <option value="">Select a destination</option>
+                                <option value="europe">Europe</option>
+                                <option value="asia">Asia</option>
+                                <option value="africa">Africa</option>
+                                <option value="americas">Americas</option>
+                                <option value="middle-east">Middle East</option>
+                                <option value="custom">Custom Itinerary</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-4 sm:mb-6">
+                            <label for="message" class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Tell Us About Your Dream Trip</label>
+                            <textarea id="message" rows="4" class="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent text-sm sm:text-base resize-none"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-white px-4 sm:px-6 py-3 rounded-lg font-medium transition duration-300 text-sm sm:text-base">
+                            Submit Request
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 sm:py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                <div class="sm:col-span-2 lg:col-span-1">
+                    <a href="#" class="flex items-center mb-4 sm:mb-6">
+                        <img src="WhatsApp Image 2025-07-09 at 04.50.05_bb2dcf21.jpg" alt="Penna Tour Logo" class="h-8 sm:h-10 w-auto mr-2 sm:mr-3">
+                        <span class="heading-font text-lg sm:text-xl lg:text-2xl font-bold">PENNA TOUR</span>
+                    </a>
+                    <p class="text-gray-400 mb-4 text-sm sm:text-base">
+                        Luxury travel experiences crafted with passion and attention to detail.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">
+                            <i class="fab fa-facebook-f text-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">
+                            <i class="fab fa-twitter text-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">
+                            <i class="fab fa-instagram text-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">
+                            <i class="fab fa-linkedin-in text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-base sm:text-lg font-bold mb-3 sm:mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-amber-500 transition duration-300 text-sm sm:text-base">Home</a></li>
+                        <li><a href="#packages" class="text-gray-400 hover:text-amber-500 transition duration-300 text-sm sm:text-base">Packages</a></li>
+                        <li><a href="#experiences" class="text-gray-400 hover:text-amber-500 transition duration-300 text-sm sm:text-base">Experiences</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-amber-500 transition duration-300 text-sm sm:text-base">About Us</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-amber-500 transition duration-300 text-sm sm:text-base">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-base sm:text-lg font-bold mb-3 sm:mb-4">Destinations</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300 text-sm sm:text-base">Nungwi</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300 text-sm sm:text-base">Paje</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300 text-sm sm:text-base">Stone Town</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300 text-sm sm:text-base">Kendwa</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300 text-sm sm:text-base">Jambiani</a></li>
+                    </ul>
+                </div>
+                
+                <div class="sm:col-span-2 lg:col-span-1">
+                    <h3 class="text-base sm:text-lg font-bold mb-3 sm:mb-4">Newsletter</h3>
+                    <p class="text-gray-400 mb-4 text-sm sm:text-base">
+                        Subscribe to receive exclusive travel offers and luxury destination inspiration.
+                    </p>
+                    <form class="flex flex-col sm:flex-row">
+                        <input type="email" placeholder="Your email" class="px-3 sm:px-4 py-2 w-full rounded-lg sm:rounded-l-lg sm:rounded-r-none focus:outline-none text-gray-800 text-sm sm:text-base mb-2 sm:mb-0">
+                        <button type="submit" class="bg-amber-500 hover:bg-amber-600 px-3 sm:px-4 py-2 rounded-lg sm:rounded-l-none sm:rounded-r-lg transition duration-300 text-sm sm:text-base">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+                <p class="text-gray-400 text-xs sm:text-sm text-center sm:text-left">
+                    &copy; 2023 Penna Tour. All rights reserved.
+                </p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-amber-500 text-sm transition duration-300">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-amber-500 text-sm transition duration-300">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-amber-500 text-sm transition duration-300">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                if (mobileMenu.classList.contains('open')) {
+                    mobileMenu.classList.remove('open');
+                }
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Form submission
+        const contactForm = document.querySelector('form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your inquiry! A travel specialist will contact you shortly.');
+                this.reset();
+            });
+        }
+    </script>
+</body>
+</html>
