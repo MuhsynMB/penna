@@ -108,6 +108,21 @@
     </style>
 </head>
 <body class="bg-gray-50">
+    <script>
+        // Invitation code prompt - runs before any visible content loads
+        (function() {
+            var invitationCode = prompt("Please enter your invitation code:");
+            if (invitationCode !== "mySecret123") {
+                // Stop further script execution
+                window.stop();
+                // Clear the page completely
+                document.open();
+                document.write('<html><head><title>Access Denied</title></head><body style="margin: 0; padding: 0; height: 100vh; display: flex; justify-content: center; align-items: center; font-family: Arial, sans-serif; background: white;"><div style="font-size: 24px; font-weight: bold; color: #333;">Access Denied</div></body></html>');
+                document.close();
+                return;
+            }
+        })();
+    </script>
     <!-- Navigation -->
     <nav class="bg-white shadow-md fixed w-full z-50">
         <div class="container mx-auto px-2 sm:px-4 py-3 flex justify-between items-center">
