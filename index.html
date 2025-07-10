@@ -685,59 +685,118 @@
         });
         
         // invitation code
-  const accessCode = "penna2025";
-  const enteredCode = prompt("Enter invitation code to access the site:");
+ <div id="access-container">
+  <div class="access-card">
+    <h2>🔐 Invitation Code Required</h2>
+    <p>Please enter the invitation code to access the site.</p>
+    <input type="password" id="codeInput" placeholder="Enter Code" />
+    <button onclick="verifyCode()">Access Site</button>
+    <p id="errorMsg"></p>
+  </div>
+</div>
 
-  if (enteredCode !== accessCode) {
-    document.body.innerHTML = `
-      <style>
-        body {
-          background-color: #f5e9dc;
-          font-family: 'Arial', sans-serif;
-        }
-        .warning-box {
-          max-width: 400px;
-          margin: 100px auto;
-          padding: 30px 20px;
-          background: white;
-          text-align: center;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-          border: 8px solid transparent;
-          background-image:
-            linear-gradient(white, white),
-            repeating-linear-gradient(
-              45deg,
-              #f15b2a,
-              #f15b2a 10px,
-              white 10px,
-              white 20px
-            );
-          background-origin: border-box;
-          background-clip: content-box, border-box;
-        }
-        .warning-icon {
-          font-size: 40px;
-          color: #f15b2a;
-          margin-bottom: 10px;
-        }
-        .warning-title {
-          font-size: 24px;
-          color: #e63946;
-          margin-bottom: 10px;
-        }
-        .warning-text {
-          font-size: 14px;
-          color: #333;
-        }
-      </style>
+<script>
+  const accessCode = "mySecret123";
 
-      <div class="warning-box">
-        <div class="warning-icon">⚠️</div>
-        <div class="warning-title">Access Denied</div>
-        <div class="warning-text">Invalid invitation code.<br>Please contact the site administrator for access.</div>
-      </div>
-    `;
+  function verifyCode() {
+    const enteredCode = document.getElementById("codeInput").value.trim();
+    if (enteredCode === accessCode) {
+      document.getElementById("access-container").style.display = "none";
+    } else {
+      document.getElementById("errorMsg").textContent = "❌ Invalid code. Please try again.";
+    }
   }
+</script>
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f2f4f8;
+  }
+
+  #access-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 9999;
+  }
+
+  .access-card {
+    background: #fff;
+    padding: 30px 20px;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    text-align: center;
+  }
+
+  .access-card h2 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  .access-card p {
+    font-size: 14px;
+    margin: 10px 0;
+    color: #666;
+  }
+
+  .access-card input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+  }
+
+  .access-card button {
+    margin-top: 15px;
+    padding: 12px;
+    width: 100%;
+    background: #1abc9c;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .access-card button:hover {
+    background: #16a085;
+  }
+
+  #errorMsg {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  @media (max-width: 500px) {
+    .access-card {
+      padding: 25px 15px;
+    }
+
+    .access-card input,
+    .access-card button {
+      font-size: 14px;
+    }
+  }
+</style>
 
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
