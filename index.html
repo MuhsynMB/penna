@@ -683,6 +683,13 @@
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('open');
         });
+        // invitation code
+                const correctCode = "mySecret123"; // change this to your code
+          const userCode = prompt("Enter your invitation code:");
+        
+          if (userCode !== correctCode) {
+            document.body.innerHTML = "<h2 style='text-align:center;'>Access Denied</h2>";
+          }
         
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
