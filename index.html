@@ -685,14 +685,56 @@
         });
         
         // invitation code
-  const accessCode = "mySecret123"; // ✅ Your invitation code
+  const accessCode = "penna2025";
   const enteredCode = prompt("Enter invitation code to access the site:");
 
   if (enteredCode !== accessCode) {
     document.body.innerHTML = `
-      <div style="text-align:center; padding: 50px;">
-        <h2 style="color: red;">Access Denied</h2>
-        <p>Invalid code. Please contact admin for access.</p>
+      <style>
+        body {
+          background-color: #f5e9dc;
+          font-family: 'Arial', sans-serif;
+        }
+        .warning-box {
+          max-width: 400px;
+          margin: 100px auto;
+          padding: 30px 20px;
+          background: white;
+          text-align: center;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+          border: 8px solid transparent;
+          background-image:
+            linear-gradient(white, white),
+            repeating-linear-gradient(
+              45deg,
+              #f15b2a,
+              #f15b2a 10px,
+              white 10px,
+              white 20px
+            );
+          background-origin: border-box;
+          background-clip: content-box, border-box;
+        }
+        .warning-icon {
+          font-size: 40px;
+          color: #f15b2a;
+          margin-bottom: 10px;
+        }
+        .warning-title {
+          font-size: 24px;
+          color: #e63946;
+          margin-bottom: 10px;
+        }
+        .warning-text {
+          font-size: 14px;
+          color: #333;
+        }
+      </style>
+
+      <div class="warning-box">
+        <div class="warning-icon">⚠️</div>
+        <div class="warning-title">Access Denied</div>
+        <div class="warning-text">Invalid invitation code.<br>Please contact the site administrator for access.</div>
       </div>
     `;
   }
