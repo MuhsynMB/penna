@@ -683,14 +683,20 @@
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('open');
         });
+        
         // invitation code
-                const correctCode = "mySecret123"; // change this to your code
-          const userCode = prompt("Enter your invitation code:");
-        
-          if (userCode !== correctCode) {
-            document.body.innerHTML = "<h2 style='text-align:center;'>Access Denied</h2>";
-          }
-        
+  const accessCode = "penna2025"; // ✅ Your invitation code
+  const enteredCode = prompt("Enter invitation code to access the site:");
+
+  if (enteredCode !== accessCode) {
+    document.body.innerHTML = `
+      <div style="text-align:center; padding: 50px;">
+        <h2 style="color: red;">Access Denied</h2>
+        <p>Invalid code. Please contact admin for access.</p>
+      </div>
+    `;
+  }
+
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
